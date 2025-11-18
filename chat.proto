@@ -1,0 +1,82 @@
+syntax = "proto3";
+package adventurers;
+
+import "user.proto";
+
+enum MessageAttachmentType {
+    TEXT = 0;
+    IMAGE = 1;
+    AUDIO = 2;
+    VIDEO = 3;
+    FILE = 4;
+    URL = 5;
+}
+
+message MessageAttachment {
+    MessageAttachmentType type = 1;
+    string content = 2;
+    string created_at = 3;
+}
+
+message Message {
+    string id = 1;
+    User user = 2;
+    repeated MessageAttachment attachments = 3;
+    string content = 4;
+    string created_at = 5;
+    Message replied_to = 6;
+}
+
+message Chat {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated User members = 4;
+    repeated Message messages = 5;
+    string created_at = 6;
+    string updated_at = 7;
+    bool private = 8;
+}
+
+message CreateChatRequest {
+    string name = 1;
+    string description = 2;
+    repeated User members = 3;
+}
+
+message CreateChatResponse {
+    Chat chat = 1;
+}
+
+message GetChatRequest {
+    string id = 1;
+}
+
+message GetChatResponse {
+    Chat chat = 1;
+}
+
+message UpdateChatRequest {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message UpdateChatResponse {
+    Chat chat = 1;
+}
+
+message DeleteChatRequest {
+    string id = 1;
+}
+
+message DeleteChatResponse {
+    bool success = 1;
+}
+
+service ChatService {
+    rpc CreateChat(CreateChatRequest) returns (CreateChatResponse);
+    rpc GetChat(GetChatRequest) returns (GetChatResponse);
+    rpc UpdateChat(UpdateChatRequest) returns (UpdateChatResponse);
+    rpc DeleteChat(DeleteChatRequest) returns (DeleteChatResponse);
+}

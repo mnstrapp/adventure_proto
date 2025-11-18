@@ -1,0 +1,8 @@
+syntax = "proto3";
+package adventurers;
+
+message User {
+    string id = 1;
+    string display_name = 2;
+    string email = 3;
+}
