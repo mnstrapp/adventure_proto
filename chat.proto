@@ -2,6 +2,7 @@ syntax = "proto3";
 package adventurers;
 
 import "user.proto";
+import "google/protobuf/timestamp.proto";
 
 enum MessageAttachmentType {
     TEXT = 0;
@@ -15,7 +16,7 @@ enum MessageAttachmentType {
 message MessageAttachment {
     MessageAttachmentType type = 1;
     string content = 2;
-    string created_at = 3;
+    google.protobuf.Timestamp created_at = 3;
 }
 
 message Message {
@@ -23,7 +24,7 @@ message Message {
     User user = 2;
     repeated MessageAttachment attachments = 3;
     string content = 4;
-    string created_at = 5;
+    google.protobuf.Timestamp created_at = 5;
     Message replied_to = 6;
 }
 
@@ -33,8 +34,8 @@ message Chat {
     string description = 3;
     repeated User members = 4;
     repeated Message messages = 5;
-    string created_at = 6;
-    string updated_at = 7;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
     bool private = 8;
 }
 

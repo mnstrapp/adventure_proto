@@ -1,0 +1,11 @@
+syntax = "proto3";
+package adventurers;
+
+import "transaction.proto";
+
+message Wallet {
+    string id = 1;
+    string user_id = 2;
+    int32 coins = 3;
+    repeated Transaction transactions = 4;
+}
