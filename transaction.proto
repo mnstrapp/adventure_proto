@@ -1,8 +1,6 @@
 syntax = "proto3";
 package adventurers;
 
-import "google/protobuf/timestamp.proto";
-
 enum TransactionType {
     CREDIT = 0;
     DEBIT = 1;
@@ -23,6 +21,6 @@ message Transaction {
     TransactionStatus transaction_status = 5;
     string data = 6;
     string error_message = 7;
-    google.protobuf.Timestamp created_at = 8;
-    google.protobuf.Timestamp updated_at = 9;
+    string created_at = 8;
+    string updated_at = 9;
 }
